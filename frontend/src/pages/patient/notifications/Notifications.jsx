@@ -1,11 +1,19 @@
-import React from 'react'
+import React, { useEffect } from "react";
+import "./notifications.css";
+import { useUser } from "../../../contexts/userContext";
 
 const Notifications = () => {
-  return (
-    <div>
-      Notifications
-    </div>
-  )
-}
+  const { user } = useUser();
 
-export default Notifications
+  useEffect(() => {
+    const fetchNotifications = async () => {
+      try {
+      } catch (err) {
+        console.error(err);
+      }
+    };
+  }, []);
+  return <div className="notifications-page"></div>;
+};
+
+export default Notifications;

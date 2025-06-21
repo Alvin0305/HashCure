@@ -2,6 +2,7 @@ import {
   addANewDiseaseFunction,
   addANewDiseaseReportFunction,
   addANewDiseaseValueFunction,
+  deleteDiseaseFunction,
   editADiseaseReportsFunction,
   getDiseaseFunction,
   getUserDiseasesFunction,
@@ -50,6 +51,21 @@ export const addANewDisease = async (req, res) => {
     res.json(newDisease);
   } catch (err) {
     console.log("Failed to add disease");
+    console.log(err);
+    res.status(500).json({ error: err.message });
+  }
+};
+
+export const deleteDisease = async (req, res) => {
+  const user_id = req.params.id;
+  const { disease_id } = req.query;
+  try {
+    const deleteDisease = await deleteDiseaseFunction(user_id, disease_id);
+    if (!deleteDisease)
+      return res.status(400).json({ error: "Failed to delete disease" });
+    res.json({ message: "Disease deleted succesfully" });
+  } catch (err) {
+    console.log("Failed to delete disease");
     console.log(err);
     res.status(500).json({ error: err.message });
   }

@@ -57,3 +57,6 @@ export const removeAMedicine = (user_id, disease_id, name) =>
   axios.delete(`/api/diseases/medicine/${user_id}`, {
     params: { disease_id, name },
   });
+
+export const removeADisease = (user_id, disease_id) =>
+  axios.delete(`/api/diseases/${user_id}`, { params: { disease_id } });

@@ -1,5 +1,7 @@
 import {
+  cancelAppointmentsOfUserFunction,
   createAppointmentFunction,
+  deleteAppointmentsOfUserFunction,
   getAllAppointmentsOfUserFunction,
   getAppointmentByIdFunction,
   getAppointmentsByDoctorFunction,
@@ -10,14 +12,28 @@ import {
 
 export const getAppointmentsByUser = async (req, res) => {
   const { id } = req.params;
-  const { dayFilter, statusFilter, hospital, doctor } = req.body;
+  const {
+    dayFilter,
+    statusFilter,
+    hospital,
+    doctor_firstname,
+    doctor_lastname,
+  } = req.body;
+  console.log(
+    dayFilter,
+    statusFilter,
+    hospital,
+    doctor_firstname,
+    doctor_lastname
+  );
   try {
     const appointments = await getAppointmentsByUserFunction(
       id,
       dayFilter,
       statusFilter,
       hospital,
-      doctor
+      doctor_firstname,
+      doctor_lastname
     );
     res.json(appointments);
   } catch (err) {
@@ -128,6 +144,34 @@ export const getAllAppointmentsOfUser = async (req, res) => {
     res.json(appointments);
   } catch (err) {
     console.log("Failed to fetch appointment");
+    console.log(err);
+    res.status(500).json({ error: err.message });
+  }
+};
+
+export const cancelAppointmentsOfUser = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const appointment = await cancelAppointmentsOfUserFunction(id);
+    if (!appointment)
+      return res.status(400).json({ error: "failed to cancel appointment" });
+    res.json(appointment);
+  } catch (err) {
+    console.log("Failed to cancel appointment");
+    console.log(err);
+    res.status(500).json({ error: err.message });
+  }
+};
+
+export const deleteAppointmentsOfUser = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const appointment = await deleteAppointmentsOfUserFunction(id);
+    if (!appointment)
+      return res.status(400).json({ error: "failed to delete appointment" });
+    res.json(appointment);
+  } catch (err) {
+    console.log("Failed to delete appointment");
     console.log(err);
     res.status(500).json({ error: err.message });
   }

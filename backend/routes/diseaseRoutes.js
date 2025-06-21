@@ -4,6 +4,7 @@ import {
   addANewDiseaseReport,
   addANewDiseaseValue,
   addANewMedicine,
+  deleteDisease,
   editADiseaseReports,
   getDiseaseDetails,
   getUserDiseases,
@@ -19,6 +20,7 @@ const router = express.Router();
 
 router.get("/:id", protect, getUserDiseases);
 router.post("/:id", protect, addANewDisease);
+router.delete("/:id", deleteDisease);
 
 router.post("/disease/:id", protect, getDiseaseDetails);
 

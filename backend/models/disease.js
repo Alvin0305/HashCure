@@ -33,6 +33,17 @@ export const addANewDiseaseFunction = async (user_id, name) => {
   return rows[0];
 };
 
+export const deleteDiseaseFunction = async (user_id, disease_id) => {
+  const { rows } = await pool.query(
+    `DELETE FROM patient_diseases
+    WHERE user_id = $1 AND disease_id = $2
+    RETURNING *`,
+    [user_id, disease_id]
+  );
+
+  return rows[0];
+};
+
 export const addANewDiseaseValueFunction = async (
   user_id,
   disease_id,

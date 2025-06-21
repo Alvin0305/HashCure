@@ -1,0 +1,30 @@
+.view-appointment-page {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  gap: 10px;
+}
+
+.view-appointment-page-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: var(--color-tile-background);
+  border-radius: 5px;
+  padding-bottom: 0;
+}
+
+.view-appointment-print-button {
+  background-color: var(--color-blue);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 5px;
+  font-size: large;
+  align-self: flex-end;
+}

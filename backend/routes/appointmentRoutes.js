@@ -1,7 +1,9 @@
 import express from "express";
 import { protect } from "../middlewares/authMiddleware.js";
 import {
+  cancelAppointmentsOfUser,
   createAppointment,
+  deleteAppointmentsOfUser,
   getAllAppointmentsOfUser,
   getAppointmentById,
   getAppointmentsByDoctor,
@@ -14,6 +16,8 @@ const router = express.Router();
 
 router.post("/", protect, createAppointment);
 router.put("/:id", protect, updateAppointment);
+router.delete("/:id", protect, deleteAppointmentsOfUser);
+router.put("/cancel/:id", protect, cancelAppointmentsOfUser);
 
 router.get("/:id", getAppointmentById);
 router.get("/patient/:id", getAllAppointmentsOfUser);

@@ -1,0 +1,16 @@
+.quick-access-page {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  gap: 10px;
+  padding: 10px;
+}
+
+.quick-access-doctors,
+.quick-access-hospitals {
+  display: grid;
+  gap: 10px;
+  width: 100%;
+  grid-template-columns: repeat(3, 1fr);
+}

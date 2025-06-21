@@ -1,0 +1,45 @@
+.settings-page {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.setting-content {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.settings-input {
+  background-color: transparent;
+  border: 2px solid var(--color-border);
+  padding: 10px;
+  border-radius: 5px;
+  width: fit-content;
+}
+
+.settings-label {
+  font-weight: normal;
+}
+
+.settings-sub-label {
+  font-weight: 100;
+  color: var(--color-light-text);
+}
+
+.settings-save-button {
+  padding: 10px 20px;
+  border: none;
+  background-color: var(--color-blue);
+  border-radius: 5px;
+  font-size: medium;
+  align-self: flex-end;
+}
+
+.check-box {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  accent-color: var(--color-blue);
+}

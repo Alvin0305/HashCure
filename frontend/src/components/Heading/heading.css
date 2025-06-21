@@ -1,0 +1,12 @@
+.heading {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.heading-line {
+  flex: 1;
+  height: 2px;
+  border-bottom: 2px solid var(--color-text);
+}

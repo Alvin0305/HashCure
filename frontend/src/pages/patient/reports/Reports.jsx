@@ -10,6 +10,7 @@ import {
   addANewMedicine,
   getDiseaseDetails,
   getUserDiseases,
+  removeADisease,
   removeADiseaseValue,
   removeAMedicine,
   updateNormalValuesOfDisease,
@@ -206,6 +207,19 @@ const Reports = () => {
     }
   };
 
+  const handleDeleteReport = async () => {
+    try {
+      const response = await removeADisease(user.id, selectedDisease.id);
+      console.log(response.data);
+      const newDiseases = diseases.filter((p) => p.id !== selectedDisease.id);
+      setDiseases(newDiseases);
+      if (newDiseases) setSelectedDisease(newDiseases[0]);
+      else setSelectedDisease(null);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   if (!diseases) return <div>Loading...</div>;
 
   return (
@@ -341,7 +355,10 @@ const Reports = () => {
         >
           Save Normal Values
         </button>
-        <button className="reports-button delete-report-button">
+        <button
+          className="reports-button delete-report-button"
+          onClick={handleDeleteReport}
+        >
           Delete Report
         </button>
         <button className="reports-button print-report-button">

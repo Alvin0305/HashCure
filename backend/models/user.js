@@ -121,28 +121,32 @@ export const getConsultedDoctorsFunction = async (id) => {
   const { rows } = await pool.query(
     `
     SELECT 
-      d.id AS doctor_id,
-      du.firstname AS doctor_firstname,
-      du.lastname AS doctor_lastname,
+      d.id AS id,
       d.fees,
-      du.image AS doctor_image,
+      du.firstname,
+      du.lastname,
+      du.email,
+      du.gender,
+      du.image,
       h.name AS hospital_name,
-      COALESCE(dr.average_rating, 0) AS doctor_rating,
+      h.district AS hospital_district,
+
+      -- Get array of specializations
       COALESCE(
-        JSON_AGG(DISTINCT s.name) FILTER (WHERE s.name IS NOT NULL),
-        '[]'
-      ) AS specializations
+        ARRAY_AGG(DISTINCT s.name) FILTER (WHERE s.name IS NOT NULL),
+        '{}'
+      ) AS specializations,
+
+      -- Get average rating formatted as numeric(10,2)
+      COALESCE(AVG(dr.rating), 0)::numeric(10,2) AS rating
+
     FROM appointments AS a
     JOIN doctors AS d ON a.doctor_id = d.id
     JOIN users AS du ON du.id = d.id
     JOIN hospitals AS h ON h.id = a.hospital_id
 
-    -- Join for average rating
-    LEFT JOIN (
-      SELECT doctor_id, ROUND(AVG(rating)::numeric, 1) AS average_rating
-      FROM doctor_ratings
-      GROUP BY doctor_id
-    ) AS dr ON dr.doctor_id = d.id
+    -- Join for ratings
+    LEFT JOIN doctor_ratings AS dr ON dr.doctor_id = d.id
 
     -- Join for specializations
     LEFT JOIN doctor_specializations AS ds ON ds.doctor_id = d.id
@@ -151,43 +155,50 @@ export const getConsultedDoctorsFunction = async (id) => {
     WHERE a.patient_id = $1
 
     GROUP BY 
-      d.id, du.id, h.id, dr.average_rating;
-
+      d.id, du.id, h.id;
     `,
     [id]
   );
+
   return rows;
 };
 
 export const getVisitedHospitalsFunction = async (id) => {
   const { rows } = await pool.query(
-    `SELECT 
-      h.id AS hospital_id,
-      h.name AS hospital_name,
-      h.district,
-      h.address,
-      COALESCE(hr.average_rating, 0) AS hospital_rating,
+    `
+    SELECT 
+      h.*,
+
+      -- Proper way to aggregate distinct specialities
       COALESCE(
-        JSON_AGG(DISTINCT s.name) FILTER (WHERE s.name IS NOT NULL),
+        JSON_AGG(ROW_TO_JSON(speciality_data)) 
+        FILTER (WHERE speciality_data.id IS NOT NULL),
         '[]'
-      ) AS specialities
+      ) AS specialities,
+
+      COALESCE(hr.average_rating, 0) AS rating
+
     FROM appointments AS a
     JOIN hospitals AS h ON h.id = a.hospital_id
 
-    -- Join for hospital average rating
+    -- Join for average rating
     LEFT JOIN (
       SELECT hospital_id, ROUND(AVG(rating)::numeric, 1) AS average_rating
       FROM hospital_ratings
       GROUP BY hospital_id
     ) AS hr ON hr.hospital_id = h.id
 
-    -- Join for specialities
-    LEFT JOIN hospital_speciality AS hs ON hs.hospital_id = h.id
-    LEFT JOIN specialities AS s ON s.id = hs.speciality_id
+    -- Specialities
+    LEFT JOIN (
+      SELECT DISTINCT s.id, s.name, hs.hospital_id
+      FROM hospital_speciality hs
+      JOIN specialities s ON s.id = hs.speciality_id
+    ) AS speciality_data ON speciality_data.hospital_id = h.id
 
     WHERE a.patient_id = $1
 
-    GROUP BY h.id, hr.average_rating;`,
+    GROUP BY h.id, hr.average_rating;
+    `,
     [id]
   );
 

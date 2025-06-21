@@ -7,3 +7,22 @@ export const createAppointment = (appointmentData, token) =>
   axios.post(`/api/appointments`, appointmentData, {
     headers: { Authorization: `Bearer ${token}` },
   });
+
+export const getAppointmentsByUser = (user_id, filterData) =>
+  axios.post(`/api/appointments/patient/${user_id}`, filterData);
+
+export const cancelAppointmentsByUser = (id, token) =>
+  axios.put(
+    `/api/appointments/cancel/${id}`,
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+export const deleteAppointmentsByUser = (id, token) =>
+  axios.delete(`/api/appointments/${id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });

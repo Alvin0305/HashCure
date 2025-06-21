@@ -78,7 +78,8 @@ export const getAppointmentsByUserFunction = async (
   dayFilter,
   statusFilter,
   hospital,
-  doctor
+  doctor_firstname,
+  doctor_lastname
 ) => {
   const selectors = [];
 
@@ -105,17 +106,26 @@ export const getAppointmentsByUserFunction = async (
       selectors.push("status = 'Cancelled'");
     } else if (statusFilter === "Pending") {
       selectors.push("status = 'Pending'");
+    } else if (statusFilter === "Past") {
+      selectors.push("status = 'Past'");
     }
   }
 
   let i = 1;
   const values = [];
 
-  if (doctor) {
+  if (doctor_firstname) {
     selectors.push(`du.firstname = $${i}`);
-    values.push(doctor);
+    values.push(doctor_firstname);
     i++;
   }
+
+  if (doctor_lastname) {
+    selectors.push(`du.lastname = $${i}`);
+    values.push(doctor_lastname);
+    i++;
+  }
+
   if (hospital) {
     selectors.push(`h.name = $${i}`);
     values.push(hospital);
@@ -133,9 +143,10 @@ export const getAppointmentsByUserFunction = async (
     JOIN hospitals AS h on a.hospital_id = h.id
     WHERE a.patient_id = $${i}
     ${selectors.length ? " AND " + selectors.join(" AND ") : ""}
+    ORDER BY a.time DESC
   `;
-  console.log(query);
-  console.log([...values, user_id]);
+  // console.log(query);
+  // console.log([...values, user_id]);
   const { rows } = await pool.query(query, [...values, user_id]);
 
   return rows;
@@ -227,4 +238,25 @@ export const getFixedAppointmentsFunction = async (
 
   client.release();
   return result;
+};
+
+export const cancelAppointmentsOfUserFunction = async (id) => {
+  const { rows } = await pool.query(
+    `UPDATE appointments
+    SET status = 'Cancelled' 
+    WHERE id = $1
+    RETURNING *`,
+    [id]
+  );
+  return rows[0];
+};
+
+export const deleteAppointmentsOfUserFunction = async (id) => {
+  const { rows } = await pool.query(
+    `DELETE FROM appointments  
+    WHERE id = $1
+    RETURNING *`,
+    [id]
+  );
+  return rows[0];
 };

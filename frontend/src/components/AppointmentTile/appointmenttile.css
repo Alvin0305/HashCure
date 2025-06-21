@@ -1,0 +1,55 @@
+.appointment-tile {
+  background-color: var(--color-primary);
+  border-radius: 10px;
+  padding: 16px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  cursor: pointer;
+}
+
+.appointment-tile:hover {
+  background-color: var(--color-hover);
+  transform: scale(1.01);
+}
+
+.appointent-tile-doctor-div,
+.appointment-tile-time-div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.appointment-tile-purpose-div {
+  align-self: flex-end;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+}
+
+.appointment-tile-scheduled {
+  color: var(--color-text-green);
+}
+
+.appointment-tile-pending {
+  color: var(--color-yellow);
+}
+
+.appointment-tile-past {
+  color: var(--color-blue);
+}
+
+.appointment-tile-cancelled {
+  color: var(--color-red);
+}
+
+.appointment-tile-button {
+  background-color: var(--color-red);
+  padding: 10px 20px;
+  border: none;
+  font-size: large;
+  border-radius: 5px;
+  cursor: pointer;
+}

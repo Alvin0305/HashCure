@@ -455,6 +455,7 @@ export const getDoctorByIdFunction = async (id) => {
 
   return result;
 };
+
 export const getDoctorFunction = async (
   searchValue,
   district,
