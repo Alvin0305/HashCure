@@ -1,0 +1,10 @@
+.small-bubble {
+  border: 2px solid var(--color-border);
+  border-radius: 20px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.selected-small-bubble {
+  background-color: var(--color-border);
+}

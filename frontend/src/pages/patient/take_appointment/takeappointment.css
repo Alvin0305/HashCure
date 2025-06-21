@@ -1,0 +1,187 @@
+.take-appointment-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  gap: 16px;
+  padding: 10px;
+}
+
+.take-appointment-top-div {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.take-appointment-doctor-image {
+  border-radius: 50%;
+  width: 200px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.take-appointment-top-subdiv {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 20px;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.take-appointment-doctor-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-sizing: border-box;
+}
+
+.take-appointment-purpose {
+  width: 100%;
+  min-height: 100px;
+  background-color: transparent;
+  border-radius: 5px;
+  border: 1px solid var(--color-border);
+  box-sizing: border-box;
+  padding: 10px;
+  resize: vertical;
+  font-size: medium;
+}
+
+.take-appointment-purpose:focus {
+  outline: none;
+}
+
+.take-appointment-legend {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+}
+
+.take-appointment-legend-subdiv {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.take-appointment-legend-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.take-appointment-legend-box {
+  width: 50px;
+  aspect-ratio: 1 / 1;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.take-appointment-legend-box-dark {
+  background-color: var(--color-primary);
+}
+
+.take-appointment-legend-box-red {
+  background-color: var(--color-red);
+}
+
+.take-appointment-legend-box-green-plus {
+  background-color: var(--color-green);
+}
+
+.take-appointment-legend-box-dark-plus {
+  border: 2px solid var(--color-border);
+}
+
+.take-appointment-calendar-button-div {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  box-sizing: border-box;
+}
+
+.take-appointment-button {
+  background-color: var(--color-blue);
+  padding: 20px 30px;
+  font-size: medium;
+}
+
+.appointment-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  width: 100%;
+  gap: 10px;
+  overflow-x: auto;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+}
+
+.header-cell {
+  padding: 10px;
+  font-weight: bold;
+  text-align: center;
+  background-color: transparent;
+}
+
+.time-label {
+  padding: 10px;
+  background-color: transparent;
+  text-align: right;
+  font-weight: bold;
+  margin: 0;
+  text-wrap: nowrap;
+}
+
+.slot-cell {
+  aspect-ratio: 4 / 1;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  box-sizing: border-box;
+}
+
+.slot-cell * {
+  color: var(--color-border);
+}
+
+.slot-cell.past {
+  background-color: var(--color-primary);
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+.slot-cell.booked {
+  background-color: var(--color-red);
+  cursor: not-allowed;
+  border: none;
+  border: 2px solid var(--color-red);
+}
+
+.slot-cell.available {
+  border: 2px solid var(--color-border);
+}
+
+.slot-cell.available * {
+  color: white;
+}
+
+.slot-cell.available:hover {
+  background-color: var(--color-green);
+  border-color: var(--color-green);
+}
+
+.slot-cell.selected {
+  background-color: var(--color-green);
+}

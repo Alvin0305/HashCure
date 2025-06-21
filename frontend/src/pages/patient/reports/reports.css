@@ -1,0 +1,259 @@
+.reports-page {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.reports-diseases {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 16px;
+}
+
+.reports-disease-name-div {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.reports-disease-name {
+  margin: 0;
+}
+
+.selected-disease-name-div {
+  background-color: var(--color-primary);
+}
+
+.reports-page-add-button {
+  aspect-ratio: 1 / 1;
+  background-color: transparent;
+  border: 3px solid var(--color-border);
+  border-radius: 5px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reports-page-add-button * {
+  color: var(--color-border);
+  stroke-width: 3px;
+}
+
+.reports-disease-values-div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.reports-disease-value-div {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+}
+
+.reports-input {
+  flex: 1;
+  height: 60px;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: transparent;
+  border: 2px solid var(--color-border);
+  border-radius: 5px;
+  font-size: large;
+}
+
+.reports-input:focus {
+  outline: none;
+}
+
+.reports-page-icon * {
+  color: var(--color-border);
+}
+
+.reports-disease-value-pair-div {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+}
+
+.reports-disease-key-div,
+.reports-disease-value-value-div {
+  flex: 1;
+  border: 2px solid var(--color-border);
+  height: 60px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.delete-icon * {
+  color: var(--color-red);
+}
+
+.reports-normal-div {
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  height: fit-content;
+  gap: 20px;
+}
+
+.reports-normal-label-div {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.reports-normal-label {
+  margin: 0;
+}
+
+.reports-normal-value-div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.reports-normal-input {
+  flex: 1;
+  padding: 14px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  border: 2px solid var(--color-border);
+  background-color: transparent;
+  font-size: large;
+}
+
+.reports-normal-input:focus {
+  outline: none;
+}
+
+.reports-buttons {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.reports-button {
+  background-color: transparent;
+  border: none;
+  font-size: large;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.save-report-button {
+  background-color: var(--color-green);
+}
+
+.delete-report-button {
+  background-color: var(--color-red);
+}
+
+.print-report-button {
+  background-color: var(--color-blue);
+}
+
+.report-files-div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.reports-add-file-label {
+  width: 100%;
+  height: 200px;
+  border: 2px dashed var(--color-border);
+  box-sizing: border-box;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.reports-add-file-label:hover {
+  border: 2px solid var(--color-border);
+  background-color: var(--color-hover);
+}
+
+.reports-add-file-label * {
+  color: var(--color-border);
+}
+
+.reports-files {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+  gap: 10px;
+}
+
+.reports-file {
+  background-color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 20px;
+  border-radius: 5px;
+}
+
+.reports-file-subdiv {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.reports-current-medicines-div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.reports-current-medicine {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.reports-current-medicine {
+  width: 100%;
+  display: flex;
+}
+
+.reports-current-medicine {
+  display: flex;
+  gap: 10px;
+}
+
+.reports-current-medicine-date-div,
+.reports-current-medicine-name-div {
+  flex: 1;
+  border: 2px solid var(--color-border);
+  height: 60px;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+}

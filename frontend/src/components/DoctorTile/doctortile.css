@@ -1,0 +1,40 @@
+.doctor-tile {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: var(--color-primary);
+  border-radius: 5px;
+  height: 240px;
+  cursor: pointer;
+}
+
+.doctor-tile-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  flex: 1;
+}
+
+.doctor-tile-name {
+  margin: 0;
+}
+
+.doctor-tile-specializations {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.doctor-tile-hospital-name {
+  margin: 0;
+}
+
+.doctor-tile-fees {
+  margin: 0;
+}
+
+.doctor-tile-image {
+  border-radius: 50%;
+  height: 100%;
+}

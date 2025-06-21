@@ -1,0 +1,7 @@
+.rating {
+  flex-shrink: 0;
+}
+
+.star path {
+  color: gold;
+}

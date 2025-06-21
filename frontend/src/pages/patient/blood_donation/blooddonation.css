@@ -1,0 +1,39 @@
+.blood-donation-filters {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.blood-donation-label {
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.margin-l20 {
+  margin-left: 20px;
+}
+
+.donor-table-wrapper {
+  padding: 20px;
+}
+
+.table {
+  border-collapse: collapse;
+  border: 1px solid var(--color-border);
+}
+
+.table .table-head-content,
+.table-body-content {
+  padding: 10px;
+}
+
+.table-head-content {
+  background-color: var(--color-blue);
+  font-weight: normal;
+}
+
+.table-body-content {
+  border-left: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+}

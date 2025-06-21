@@ -1,0 +1,34 @@
+.hospitals {
+  width: 100%;
+}
+
+.hospitals-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+.hospital-specialities {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.hospital-ownerships {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+
+.hospital-tiles {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  box-sizing: border-box;
+}

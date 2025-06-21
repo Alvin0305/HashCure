@@ -1,0 +1,95 @@
+.doctor-page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.doctor-page-top {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 20px;
+}
+
+.doctor-page-image {
+  border-radius: 50%;
+  height: 200px;
+}
+
+.doctor-page-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.doctor-page-gender {
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.doctor-spces-div {
+  display: flex;
+  gap: 10px;
+}
+
+.doctor-experience-label {
+  font-weight: normal;
+  font-size: 16px;
+}
+
+.doctor-experience-value {
+  font-weight: bold;
+}
+
+.take-appointment-button {
+  background-color: var(--color-blue);
+  border: none;
+  padding: 14px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.schedule-current-hospital-div {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  width: 100%;
+  /* justify-content: space-between; */
+}
+
+.doctor-schedule-heading {
+  width: 100%;
+  text-align: center;
+  background-color: var(--color-blue);
+  margin: 0;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.doctor-schedule-data {
+  padding: 10px;
+  text-align: center;
+  border-left: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+  min-width: 140px;
+}
+
+.doctor-schedule-day {
+  padding: 10px;
+  text-align: left;
+}
+
+.doctor-schedule {
+  border: 1px solid var(--color-border);
+  border-collapse: collapse;
+  font-weight: bold;
+}
+
+.doctor-videos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}

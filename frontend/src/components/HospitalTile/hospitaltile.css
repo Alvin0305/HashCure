@@ -1,0 +1,44 @@
+.hospital-tile {
+  background-color: var(--color-primary);
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  height: fit-content;
+  align-items: center;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.hospital-tile-left-div {
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.hospital-tile-specialities {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.hospital-tile-image {
+  height: 240px;
+  width: 240px;
+  object-fit: cover;
+}
+
+.hospital-tile-name {
+  margin: 0;
+  font-size: 1.2em;
+  font-weight: 700;
+}
+
+.hospital-address {
+  margin: 0;
+  font-weight: lighter;
+}

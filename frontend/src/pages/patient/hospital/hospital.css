@@ -1,0 +1,102 @@
+.hospital-page {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  box-sizing: border-box;
+}
+
+.hospital-page-top {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+}
+
+.hospital-page-image {
+  width: 240px;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.hospital-page-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  gap: 10px;
+}
+
+.hospital-page-name {
+  font-size: 1.3em;
+  margin: 0;
+}
+
+.hospital-started-at {
+  margin: 0;
+  font-weight: lighter;
+}
+
+.hospital-page-address {
+  font-weight: lighter;
+  margin: 0;
+}
+
+.hospital-description {
+  margin: 0;
+  font-weight: lighter;
+  font-size: small;
+}
+
+.hospital-page-specialities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.hospital-user-response-div {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 10px;
+}
+
+.comment-send-button {
+  cursor: pointer;
+}
+
+.comment-send-button:hover {
+  transform: scale(1.1);
+}
+
+.comment {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.comment-avatar {
+  border-radius: 50%;
+  width: 40px;
+}
+
+.comment-div {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-name {
+  margin: 0;
+}
+
+.comment {
+  margin: 0;
+  font-weight: lighter;
+  font-size: 0.9em;
+}
+
+.hospital-doctors {
+  width: 100%;
+}
