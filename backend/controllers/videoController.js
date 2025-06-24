@@ -47,8 +47,9 @@ export const addVideo = async (req, res) => {
 };
 
 export const deleteVideo = async (req, res) => {
-  const { id } = req.params;
-  const { video_url } = req.body;
+  const id = req.user?.id;
+  const { video_url } = req.query;
+  console.log(id, video_url);
 
   try {
     const video = await deleteVideoFunction(id, video_url);

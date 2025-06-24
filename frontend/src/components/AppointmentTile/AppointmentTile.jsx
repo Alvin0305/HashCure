@@ -6,6 +6,7 @@ import {
 } from "../../services/appointmentService";
 import { useUser } from "../../contexts/userContext";
 import { useNavigate } from "react-router-dom";
+import socket from "../../sockets/socket";
 
 const AppointmentTile = ({ appointment, setAppointments }) => {
   const { user } = useUser();
@@ -26,20 +27,7 @@ const AppointmentTile = ({ appointment, setAppointments }) => {
 
   const handleCancelAppointment = async (e) => {
     e.stopPropagation();
-    try {
-      const response = await cancelAppointmentsByUser(
-        appointment.id,
-        user.token
-      );
-      console.log(response.data);
-      setAppointments((prev) =>
-        prev.map((a) =>
-          a.id === appointment.id ? { ...a, status: "Cancelled" } : a
-        )
-      );
-    } catch (err) {
-      console.error(err);
-    }
+    socket.emit("cancel_appointment", appointment);
   };
 
   const navigate = useNavigate();

@@ -28,3 +28,9 @@
   font-size: large;
   align-self: flex-end;
 }
+
+.view-appointment-page-top-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}

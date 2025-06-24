@@ -2,8 +2,16 @@
   margin: 0;
 }
 
+.mt-10 {
+  margin-top: 10px;
+}
+
 .p0 {
   padding: 0;
+}
+
+.p10 {
+  padding: 10px;
 }
 
 .flex {
@@ -40,4 +48,12 @@
 
 .space-evenly {
   justify-content: space-evenly;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.end {
+  align-self: flex-end;
 }

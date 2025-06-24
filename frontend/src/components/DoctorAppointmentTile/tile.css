@@ -1,0 +1,11 @@
+.consult-button {
+  background-color: var(--color-blue);
+}
+
+.accept-button {
+  background-color: var(--color-green);
+}
+
+.appointment-tile {
+  min-width: 300px;
+}

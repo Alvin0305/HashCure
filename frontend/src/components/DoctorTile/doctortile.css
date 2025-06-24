@@ -4,8 +4,9 @@
   padding: 10px;
   background-color: var(--color-primary);
   border-radius: 5px;
-  height: 240px;
+  /* height: 240px; */
   cursor: pointer;
+  box-sizing: border-box;
 }
 
 .doctor-tile-details {
@@ -14,6 +15,7 @@
   align-items: flex-start;
   gap: 10px;
   flex: 1;
+  box-sizing: border-box;
 }
 
 .doctor-tile-name {
@@ -36,5 +38,7 @@
 
 .doctor-tile-image {
   border-radius: 50%;
-  height: 100%;
+  height: 200px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
 }

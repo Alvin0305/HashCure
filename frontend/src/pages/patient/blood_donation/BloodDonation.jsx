@@ -120,7 +120,7 @@ const BloodDonation = () => {
             </thead>
             <tbody className="table-body">
               {donors.map((donor, index) => (
-                <tr className="table-body-row">
+                <tr className="table-body-row" key={index}>
                   <td className="table-body-content">{index + 1}</td>
                   <td className="table-body-content">{donor.firstname}</td>
                   <td className="table-body-content">{donor.lastname}</td>

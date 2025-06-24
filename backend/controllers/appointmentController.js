@@ -26,6 +26,8 @@ export const getAppointmentsByUser = async (req, res) => {
     doctor_firstname,
     doctor_lastname
   );
+
+  console.log("id:", id);
   try {
     const appointments = await getAppointmentsByUserFunction(
       id,

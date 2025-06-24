@@ -23,6 +23,7 @@ export const createDoctorFunction = async (
   await pool.query(`INSERT INTO doctors (id) VALUES ($1) RETURNING *`, [
     doctor.id,
   ]);
+
   return doctor;
 };
 
@@ -32,7 +33,7 @@ export const addDoctorToHospitalFunction = async (hospital_id, doctor_id) => {
         VALUES ($1, $2) RETURNING *`,
     [hospital_id, doctor_id]
   );
-  return rows;
+  return rows[0];
 };
 
 export const getHospitalByIdFunction = async (hospital_id) => {
@@ -41,6 +42,16 @@ export const getHospitalByIdFunction = async (hospital_id) => {
   ]);
   rows[0].rating = await getHospitalRating(hospital_id);
   rows[0].specialities = await getHospitalSpecialitiesFunction(hospital_id);
+  return rows[0];
+};
+
+export const getHospitalByAdminIdFunction = async (admin_id) => {
+  const { rows } = await pool.query(
+    `SELECT u.*, h.* FROM hospitals as h 
+    JOIN users AS u ON h.admin_id = u.id
+    WHERE u.id = $1`,
+    [admin_id]
+  );
   return rows[0];
 };
 
@@ -213,7 +224,7 @@ export const rateHospitalFunction = async (hospital_id, user_id, rating) => {
 export const getPatientsInHospitalFunction = async (
   hospital_id,
   searchValue,
-  doctorName,
+  doctorId,
   ageStart,
   ageEnd
 ) => {
@@ -227,9 +238,9 @@ export const getPatientsInHospitalFunction = async (
     i++;
   }
 
-  if (doctorName) {
-    fields.push(`du.firstname ILIKE '%' || $${i} || '%'`);
-    values.push(doctorName);
+  if (doctorId) {
+    fields.push(`du.id = $${i}`);
+    values.push(doctorId);
     i++;
   }
 
@@ -241,8 +252,9 @@ export const getPatientsInHospitalFunction = async (
     i += 2;
   }
 
-  const query = `SELECT u.*, 
-    (u.weight * 10000)::float / (u.height * u.height)::float AS bmi 
+  const query = `SELECT DISTINCT ON (u.id) u.*, 
+    (u.weight * 10000)::float / (u.height * u.height)::float AS bmi,
+    EXTRACT(YEAR FROM age(u.dob))::int AS age
     FROM users AS U
     JOIN appointments AS a ON a.patient_id = u.id AND a.hospital_id = ${hospital_id}
     JOIN doctors AS d ON a.doctor_id = d.id
@@ -389,9 +401,9 @@ export const updateHospitalFunction = async (
 export const updateHospitalImageFunction = async (hospital_id, image_url) => {
   const { rows } = await pool.query(
     `UPDATE hospitals
-    SET image = $1 
-    WHERE id = $2
-    RETURNRING *`,
+    SET image = $2 
+    WHERE id = $1
+    RETURNING *`,
     [hospital_id, image_url]
   );
   return rows[0];
@@ -426,7 +438,6 @@ export const addHospitalSpecialityFunction = async (id, name) => {
   console.log(spec);
 
   if (!spec) {
-    console.log("here");
     const { rows: newSpec } = await pool.query(
       `INSERT INTO specialities (name)
       VALUES ($1) 
@@ -442,7 +453,10 @@ export const addHospitalSpecialityFunction = async (id, name) => {
       [id, newSpec[0].id]
     );
 
-    return rows[0];
+    newSpec[0].name = name;
+    newSpec[0].hospital_id = id;
+
+    return newSpec[0];
   }
 
   const { rows } = await pool.query(
@@ -452,6 +466,10 @@ export const addHospitalSpecialityFunction = async (id, name) => {
     RETURNING *`,
     [id, spec.id]
   );
+
+  rows[0].name = name;
+  rows[0].hospital_id = id;
+  rows[0].id = rows[0].speciality_id;
 
   return rows[0];
 };

@@ -10,6 +10,7 @@ import {
   getAllDistrictsFunction,
   getAllSpecialitiesFunction,
   getDoctorsInHospitalFunction,
+  getHospitalByAdminIdFunction,
   getHospitalByIdFunction,
   getHospitalCommentsFunction,
   getHospitalsFunction,
@@ -62,6 +63,19 @@ export const getHospitalById = async (req, res) => {
   }
 };
 
+export const getHospitalByAdminId = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const hospital = await getHospitalByAdminIdFunction(id);
+    if (!hospital) return res.status(404).json({ error: "Hospital not found" });
+    res.json(hospital);
+  } catch (err) {
+    console.log("Error fetching hospital details");
+    console.log(err);
+    res.status(500).json({ error: err.message });
+  }
+};
+
 export const getAllSpecialities = async (req, res) => {
   try {
     const specs = await getAllSpecialitiesFunction();
@@ -103,7 +117,7 @@ export const addHospitalSpeciality = async (req, res) => {
 
 export const removeHospitalSpeciality = async (req, res) => {
   const { id } = req.params;
-  const { speciality } = req.body;
+  const { speciality } = req.query;
   try {
     const spec = await removeHospitalSpecialityFunction(id, speciality);
     if (!spec) return res.status(400).json({ error: "Failed to remove spec" });
@@ -143,12 +157,16 @@ export const updateHospital = async (req, res) => {
 export const updateHospitalImage = async (req, res) => {
   const { id } = req.params;
   try {
+    console.log("1");
     if (!req.file) return res.status(400).json({ error: "image not found" });
-    const uploadResult = await uploadToCloudinary(res.file.buffer, "hospitals");
+    console.log("2");
+    const uploadResult = await uploadToCloudinary(req.file.buffer, "hospitals");
+    console.log("3", uploadResult);
     const result = await updateHospitalImageFunction(
       id,
       uploadResult.secure_url
     );
+    console.log("4");
     res.json(result);
   } catch (err) {
     console.log("Error updating hospital image");
@@ -246,7 +264,7 @@ export const getDoctorsInHospital = async (req, res) => {
 
 export const removeDoctorFromHospital = async (req, res) => {
   const { id } = req.params;
-  const { doctor_id } = req.body;
+  const { doctor_id } = req.query;
   try {
     const deletedDoctor = await removeDoctorFromHospitalFunction(id, doctor_id);
     if (!deletedDoctor)
@@ -274,7 +292,8 @@ export const addDoctorToHospital = async (req, res) => {
     console.log("here", newDoctor.id, hospital_id);
     if (!newDoctor)
       return res.status(400).json({ error: "Failed to create doctor" });
-    await addDoctorToHospitalFunction(hospital_id, newDoctor.id);
+    const result = await addDoctorToHospitalFunction(hospital_id, newDoctor.id);
+    console.log("there: ", result);
     res.json(newDoctor);
   } catch (err) {
     console.log(err);
@@ -284,12 +303,13 @@ export const addDoctorToHospital = async (req, res) => {
 
 export const getPatientsInHospital = async (req, res) => {
   const { id } = req.params;
-  const { searchValue, doctorName, ageStart, ageEnd } = req.body;
+  const { searchValue, doctorId, ageStart, ageEnd } = req.body;
+  console.log("doctor name: ", doctorId);
   try {
     const patients = await getPatientsInHospitalFunction(
       id,
       searchValue,
-      doctorName,
+      doctorId,
       ageStart,
       ageEnd
     );

@@ -33,3 +33,8 @@
   color: white;
   font-weight: bold;
 }
+
+.today {
+  background-color: var(--color-blue);
+  border-radius: 5px;
+}

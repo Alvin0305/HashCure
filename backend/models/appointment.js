@@ -40,7 +40,8 @@ export const updateAppointmentFunction = async (
     `UPDATE appointments 
         SET chief_complaint = $1,
         diagnosis = $2,
-        treatment_plan = $3
+        treatment_plan = $3,
+        status = 'Past'
         WHERE id = $4
         RETURNING *`,
     [chief_complaint, diagnosis, treatment_plan, appointment_id]
@@ -196,6 +197,7 @@ export const getAppointmentsByDoctorFunction = async (
     JOIN hospitals AS h on a.hospital_id = h.id
     WHERE a.doctor_id = $1
     ${selectors.length ? " AND " + selectors.join(" AND ") : ""}
+    ORDER BY a.time DESC
   `;
   console.log(query);
   console.log([doctor_id]);

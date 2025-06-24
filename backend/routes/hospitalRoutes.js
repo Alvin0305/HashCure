@@ -12,6 +12,7 @@ import {
   getAllOwnershipTypes,
   getAllSpecialities,
   getDoctorsInHospital,
+  getHospitalByAdminId,
   getHospitalById,
   getHospitalComments,
   getHospitals,
@@ -29,6 +30,8 @@ import {
 import multer from "../middlewares/multer.js";
 
 const router = express.Router();
+
+router.get(`/admin/:id`, getHospitalByAdminId);
 
 router.post("/doctor/:id", addDoctorToHospital);
 router.get("/doctors/:id", getDoctorsInHospital);

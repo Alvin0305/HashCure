@@ -1,0 +1,68 @@
+.schedules {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.schedule-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr;
+  align-items: center;
+  gap: 10px;
+}
+
+.schedule-day h3 {
+  margin: 0;
+  font-weight: bold;
+}
+
+.schedule-slot {
+  background-color: transparent;
+  border: 2px solid var(--color-border);
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: medium;
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.schedule-slot:hover {
+  background-color: var(--color-highlight);
+}
+
+.add-slot {
+  cursor: pointer;
+  background-color: transparent;
+  border: 2px dashed var(--color-border);
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.add-slot:hover {
+  background-color: var(--color-highlight);
+}
+
+.context-menu {
+  background-color: var(--color-hover);
+  padding: 0;
+  border-radius: 5px;
+  z-index: 9999;
+}
+
+.pad-50 {
+  padding: 10px;
+}
+
+.context-menu-option {
+  margin: 0;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.context-menu-option:hover {
+  background-color: var(--color-highlight);
+}

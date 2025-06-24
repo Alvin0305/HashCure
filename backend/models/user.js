@@ -1,4 +1,5 @@
 import pool from "../db.js";
+import { getUserAllergiesFunction } from "./allergy.js";
 
 export const createUser = async (
   firstname,
@@ -294,7 +295,10 @@ export const updateUserPreferencesFunction = async (
 };
 
 export const getUserProfileFunction = async (id) => {
-  return await getUserById(id);
+  const user = await getUserById(id);
+  const allergies = await getUserAllergiesFunction(id);
+  user.allergies = allergies;
+  return user;
 };
 
 export const updateUserProfileFunction = async (id, updateData) => {
@@ -305,7 +309,6 @@ export const updateUserProfileFunction = async (id, updateData) => {
     "gender",
     "address",
     "phone",
-    "dob",
     "height",
     "weight",
     "blood_group",
@@ -322,6 +325,12 @@ export const updateUserProfileFunction = async (id, updateData) => {
       values.push(updateData[field]);
       i++;
     }
+  }
+
+  if (updateData["dob"] !== undefined) {
+    updates.push(`dob = $${i}`);
+    values.push(new Date(updateData["dob"]));
+    i++;
   }
 
   if (updates.length) {

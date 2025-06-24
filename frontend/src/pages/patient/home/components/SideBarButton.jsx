@@ -1,11 +1,14 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
+import { useUser } from "../../../../contexts/userContext";
 
 const SideBarButton = ({ name, iconName }) => {
   const iconSize = 32;
 
   const navigate = useNavigate();
   const location = useLocation();
+
+  const { user } = useUser();
 
   const routeMap = {
     Home: "home",
@@ -17,7 +20,7 @@ const SideBarButton = ({ name, iconName }) => {
     Notifications: "notifications",
     "Blood Donation": "blood-donation",
     Settings: "settings",
-    Profile: "profile",
+    Profile: `profile/${user.id}`,
     Hospital: "hospital",
     Doctor: "doctor",
     "Take Appointment": "take-appointment",

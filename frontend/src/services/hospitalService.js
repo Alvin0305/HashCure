@@ -35,3 +35,33 @@ export const rateHospital = (hospital_id, rating, token) =>
     { rating },
     { headers: { Authorization: `Bearer ${token}` } }
   );
+
+export const getHospitalByAdminId = (id) =>
+  axios.get(`/api/hospitals/admin/${id}`);
+
+export const getPatientsInHospital = (id, filterData) =>
+  axios.post(`api/hospitals/patients/${id}`, filterData);
+
+export const removeDoctorFromHospital = (id, doctor_id) =>
+  axios.delete(`api/hospitals/doctor/${id}`, { params: { doctor_id } });
+
+export const addDoctorToHospital = (id, data) =>
+  axios.post(`api/hospitals/doctor/${id}`, data);
+
+export const uploadHospitalImage = (hospital_id, formData) =>
+  axios.put(`/api/hospitals/upload/${hospital_id}`, formData, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
+
+export const getHospitalById = (id) => axios.get(`/api/hospitals/${id}`);
+
+export const updateHospital = (id, data) =>
+  axios.put(`/api/hospitals/${id}`, data);
+
+export const addHospitalSpeciality = (id, name) =>
+  axios.post(`/api/hospitals/specialities/${id}`, { speciality: name });
+
+export const removeHospitalSpeciality = (id, name) =>
+  axios.delete(`/api/hospitals/specialities/${id}`, {
+    params: { speciality: name },
+  });

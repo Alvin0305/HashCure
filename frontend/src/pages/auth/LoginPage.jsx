@@ -17,7 +17,13 @@ const LoginPage = () => {
       const response = await loginUser(userData);
       console.log(response.data);
       setUser(response.data);
-      navigate("/patient/home");
+      if (response.data.role === "doctor") {
+        navigate("doctor/home");
+      } else if (response.data.role === "hospital-admin") {
+        navigate("/hospital-admin/home");
+      } else {
+        navigate("/patient/home");
+      }
     } catch (err) {
       console.error(err);
       if (!err.response) return toast.error("Unhandled exception");

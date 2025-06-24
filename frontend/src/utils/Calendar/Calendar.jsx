@@ -2,17 +2,21 @@ import React, { useState } from "react";
 import { Icon } from "@iconify/react";
 import "./calender.css";
 
-const Calendar = ({ selectedWeek, setSelectedWeek }) => {
+const Calendar = ({ selectedWeek, setSelectedWeek, disabled }) => {
   const [selectedDay, setSelectedDay] = useState(new Date());
   const moveToPreviousMonth = () => {
-    if (selectedDay < new Date()) return;
+    if (!disabled && selectedDay < new Date()) return;
     const newDate = new Date(selectedDay);
     newDate.setMonth(newDate.getMonth() - 1);
     setSelectedDay(newDate);
   };
 
   const moveToNextMonth = () => {
-    if (selectedDay > new Date().setMonth(new Date().getMonth() + 4)) return;
+    if (
+      !disabled &&
+      selectedDay > new Date().setMonth(new Date().getMonth() + 4)
+    )
+      return;
     const newDate = new Date(selectedDay);
     newDate.setMonth(newDate.getMonth() + 1);
     setSelectedDay(newDate);
@@ -99,8 +103,14 @@ const Calendar = ({ selectedWeek, setSelectedWeek }) => {
           return (
             <div
               key={index}
-              className={`calendar-day pointer ${isSelected ? "selected" : ""}`}
-              onClick={() => handleClick(fullDate)}
+              className={`calendar-day pointer ${
+                isSelected
+                  ? "selected"
+                  : fullDate.toDateString() === new Date().toDateString()
+                  ? "today"
+                  : ""
+              }`}
+              onClick={disabled ? () => {} : () => handleClick(fullDate)}
             >
               {day}
             </div>

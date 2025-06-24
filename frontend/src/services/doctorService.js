@@ -41,3 +41,37 @@ export const getUserRatingToDoctor = (user_id, doctor_id) =>
 
 export const getDoctorWorkingHours = (id) =>
   axios.get(`/api/doctors/schedule/${id}`);
+
+export const getPatients = (id, data, token) =>
+  axios.post(`/api/doctors/patients/${id}`, data, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+export const updateDoctor = (id, doctorData) =>
+  axios.put(`/api/doctors/${id}`, { doctorData });
+
+export const addSpecializationForDoctor = (id, spec, token) =>
+  axios.post(
+    `/api/doctors/specialization/${id}`,
+    { specialization: spec },
+    { headers: { Authorization: `Bearer ${token}` } }
+  );
+
+export const removeSpecializationForDoctor = (id, spec, token) =>
+  axios.delete(`/api/doctors/specialization/${id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+    params: { specialization: spec },
+  });
+
+export const addDoctorWorkingHour = (id, data, token) =>
+  axios.post(`/api/doctors/schedule/${id}`, data, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+export const removeDoctorWorkingHour = (id, data) =>
+  axios.delete(`/api/doctors/schedule/${id}`, {
+    params: data,
+  });
+
+export const editDoctorWorkingHour = (id, data) =>
+  axios.put(`/api/doctors/schedule/${id}`, data);

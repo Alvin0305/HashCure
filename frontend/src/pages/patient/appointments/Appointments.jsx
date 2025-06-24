@@ -6,6 +6,7 @@ import { getDoctors } from "../../../services/doctorService";
 import { getAppointmentsByUser } from "../../../services/appointmentService";
 import { useUser } from "../../../contexts/userContext";
 import AppointmentTile from "../../../components/AppointmentTile/AppointmentTile";
+import socket from "../../../sockets/socket";
 
 const Appointments = () => {
   const [selectedDay, setSelectedDay] = useState("All");
@@ -91,6 +92,34 @@ const Appointments = () => {
     };
     refetchAppointments();
   }, [selectedDay, selectedStatus, selectedHospital, selectedDoctor]);
+
+  useEffect(() => {
+    const handleCancelAppointment = ({ appointment }) => {
+      console.log("appointment cancelled", appointment);
+      setAppointments((prev) =>
+        prev.map((a) =>
+          a.id === appointment.id ? { ...a, status: "Cancelled" } : a
+        )
+      );
+    };
+
+    const handleConfirmAppointment = ({ appointment, notification }) => {
+      console.log("appointment confirmed", appointment);
+      setAppointments((prev) =>
+        prev.map((a) =>
+          a.id === appointment.id ? { ...a, status: "Scheduled" } : a
+        )
+      );
+    };
+
+    socket.on("appointment_cancelled", handleCancelAppointment);
+    socket.on("appointment_confirmed", handleConfirmAppointment);
+
+    return () => {
+      socket.off("appointment_cancelled", handleCancelAppointment);
+      socket.off("appointment_confirmed", handleConfirmAppointment);
+    };
+  }, []);
 
   return (
     <div className="patient-appoinments-page">

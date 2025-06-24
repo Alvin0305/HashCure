@@ -70,6 +70,7 @@ export const getDoctorById = async (req, res) => {
 export const updateDoctor = async (req, res) => {
   const { id } = req.params;
   const { doctorData } = await req.body;
+  console.log("data: ", doctorData);
   try {
     const updatedDoctor = await updateDoctorFunction(id, doctorData);
     if (!updatedDoctor)
@@ -125,7 +126,7 @@ export const addSpecializationForDoctor = async (req, res) => {
 
 export const removeSpecializationForDoctor = async (req, res) => {
   const { id } = req.params;
-  const { specialization } = req.body;
+  const { specialization } = req.query;
   try {
     const deletedSpecialization = await removeSpecializationForDoctorFunction(
       id,
@@ -159,6 +160,7 @@ export const getDoctorWorkingHours = async (req, res) => {
 export const addDoctorWorkingHour = async (req, res) => {
   const doctor_id = req.params?.id;
   const { day, start_time, end_time } = req.body;
+  console.log(req.body);
 
   try {
     const newSchedule = await addDoctorWorkingHourFunction(
@@ -178,8 +180,8 @@ export const addDoctorWorkingHour = async (req, res) => {
 };
 
 export const removeDoctorWorkingHour = async (req, res) => {
-  const doctor_id = req.user?.id;
-  const { day, start_time, end_time } = req.body;
+  const doctor_id = req.params.id;
+  const { day, start_time, end_time } = req.query;
 
   try {
     const deletedSchedule = await deleteDoctorWorkingHourFunction(
@@ -201,7 +203,7 @@ export const removeDoctorWorkingHour = async (req, res) => {
 };
 
 export const updateDoctorWorkingHour = async (req, res) => {
-  const doctor_id = req.user?.id;
+  const doctor_id = req.params.id;
   const { day, start_time, end_time, new_start_time, new_end_time } = req.body;
 
   try {

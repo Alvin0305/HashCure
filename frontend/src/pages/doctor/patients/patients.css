@@ -1,0 +1,50 @@
+.doctor-patients-page {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  gap: 10px;
+}
+
+.doctor-patients-search {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: var(--color-field);
+  padding: 0 10px;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.doctor-patients-input {
+  flex: 1;
+  background-color: transparent;
+  border: none;
+  padding: 16px;
+  font-size: large;
+  color: var(--color-border);
+}
+
+.doctor-patients-input-icon * {
+  color: var(--color-border);
+}
+
+.doctor-patients-input:focus {
+  outline: none;
+}
+
+.doctor-patients-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.doctor-patients {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}

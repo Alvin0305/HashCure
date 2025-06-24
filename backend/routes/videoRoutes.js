@@ -12,6 +12,6 @@ const router = express.Router();
 router.post("/", protect, addVideo);
 router.get("/new", getNewVideos);
 router.get("/:id", getVideosByDoctor);
-router.delete("/:id", deleteVideo);
+router.delete("/", protect, deleteVideo);
 
 export default router;

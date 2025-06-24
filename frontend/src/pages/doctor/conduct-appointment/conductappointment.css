@@ -1,0 +1,59 @@
+.conduct-appointment-page {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.conduct-appointment-top-buttons {
+  align-self: flex-end;
+  display: flex;
+  gap: 10px;
+}
+
+.conduct-appointment-button {
+  background-color: var(--color-blue);
+  padding: 10px 16px;
+  border: none;
+  border-radius: 5px;
+  font-size: medium;
+  align-self: flex-end;
+}
+
+.conduct-appointment-div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+}
+
+.conduct-appointment-field {
+  width: 100%;
+  border-radius: 5px;
+  border: 2px solid var(--color-border);
+  background-color: transparent;
+  resize: vertical;
+  box-sizing: border-box;
+  padding: 10px;
+  font-size: medium;
+}
+
+.conduct-appointment-field:focus {
+  outline: none;
+}
+
+.chief-complaint-field {
+  min-height: 140px;
+}
+
+.diagnosis-field {
+  min-height: 200px;
+}
+
+.treatment-plan-field {
+  min-height: 300px;
+}

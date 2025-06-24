@@ -3,6 +3,7 @@ import {
   confirmAppointment,
   createAppointment,
 } from "./socketControllers/appointmentController.js";
+import { joinUser } from "./socketControllers/loginController.js";
 
 export const configureSockets = (io) => {
   io.on("connection", (socket) => {
@@ -13,11 +14,15 @@ export const configureSockets = (io) => {
     );
 
     socket.on("cancel_appointment", (appointment) => {
-      cancelAppointment({ appointment, io });
+      cancelAppointment({ appt: appointment, io });
     });
 
     socket.on("confirm_appointment", (appointment) => {
-      confirmAppointment({ appointment, io });
+      confirmAppointment({ appt: appointment, io });
+    });
+
+    socket.on("user_joined", (id) => {
+      joinUser({ user_id: id, socket });
     });
   });
 };

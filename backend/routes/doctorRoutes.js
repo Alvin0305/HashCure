@@ -35,8 +35,8 @@ router.delete("/specialization/:id", protect, removeSpecializationForDoctor);
 router.get("/specializations", getAllSpecializations);
 
 router.post("/schedule/:id", addDoctorWorkingHour);
-router.delete("/schedule", protect, removeDoctorWorkingHour);
-router.put("/schedule", protect, updateDoctorWorkingHour);
+router.delete("/schedule/:id", removeDoctorWorkingHour);
+router.put("/schedule/:id", updateDoctorWorkingHour);
 router.get("/schedule/:id", getDoctorWorkingHours);
 
 router.post("/experiences", protect, addPreviouslyWorkedHospitals);
@@ -55,7 +55,7 @@ router.post("/user/rating/:id", getUserRatingToDoctor);
 
 router.patch("/approve/:id", protect, approveAnAppointment);
 
-router.put("/:id", protect, updateDoctor);
+router.put("/:id", updateDoctor);
 router.get("/:id", getDoctorById);
 
 export default router;

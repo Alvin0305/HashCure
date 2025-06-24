@@ -124,6 +124,8 @@ export const getUserProfile = async (req, res) => {
 export const updateUserProfile = async (req, res) => {
   const { id } = req.params;
   const { userData } = req.body;
+  console.log("user data", userData);
+  console.log("body", req.body);
   try {
     const user = await updateUserProfileFunction(id, userData);
     if (!user) return res.status(400).json({ error: "Failed to update user" });

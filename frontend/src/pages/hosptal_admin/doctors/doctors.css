@@ -1,0 +1,28 @@
+.add-doctor-dialog {
+  background-color: var(--color-primary);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  transform: translateX(-50%);
+  transform: translateY(-50%);
+  border-radius: 10px;
+}
+
+.add-doctor-dialog-button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 5px;
+  font-size: medium;
+}
+
+.save-dialog-button {
+  background-color: var(--color-green);
+}
+
+.cancel-dialog-button {
+  background-color: var(--color-red);
+}

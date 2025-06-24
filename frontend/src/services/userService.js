@@ -13,3 +13,18 @@ export const getConsultedDoctors = (id) => axios.get(`api/users/doctors/${id}`);
 
 export const getVisitedHospitals = (id) =>
   axios.get(`api/users/hospitals/${id}`);
+
+export const getUserNotifications = (token) =>
+  axios.get(`/api/users/notifications`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+export const getUserById = (id) => axios.get(`/api/users/${id}`);
+
+export const updateUser = (id, userData) =>
+  axios.put(`/api/users/${id}`, { userData });
+
+export const updateUserImage = (id, formData) =>
+  axios.put(`/api/users/upload/${id}`, formData, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });

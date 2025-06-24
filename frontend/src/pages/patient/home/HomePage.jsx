@@ -16,6 +16,7 @@ import Doctor from "../doctor/Doctor";
 import TakeAppointment from "../take_appointment/TakeAppointment";
 import { Routes, Route, Navigate } from "react-router-dom";
 import ViewAppointment from "../view_appointment/ViewAppointment";
+import ViewAppointments from "../view_appointments/ViewAppointments";
 
 const HomePage = () => {
   return (
@@ -33,11 +34,12 @@ const HomePage = () => {
           <Route path="notifications" element={<Notifications />} />
           <Route path="blood-donation" element={<BloodDonation />} />
           <Route path="settings" element={<Settings />} />
-          <Route path="profile" element={<Profile />} />
+          <Route path="profile/:id" element={<Profile />} />
           <Route path="hospital" element={<Hospital />} />
           <Route path="doctor" element={<Doctor />} />
           <Route path="take-appointment" element={<TakeAppointment />} />
           <Route path="view-appointment" element={<ViewAppointment />} />
+          <Route path="view-appointments" element={<ViewAppointments />} />
         </Routes>
       </div>
     </div>

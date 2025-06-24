@@ -23,7 +23,9 @@ export const addUserAllergyFunction = async (user_id, name) => {
         `,
       [user_id, medicine[0].id]
     );
-    return rows;
+
+    rows[0].name = name;
+    return rows[0];
   }
   const { rows } = await pool.query(
     `INSERT INTO 
@@ -33,6 +35,7 @@ export const addUserAllergyFunction = async (user_id, name) => {
       `,
     [user_id, exisiting[0].id]
   );
+  rows[0].name = name;
   return rows[0];
 };
 

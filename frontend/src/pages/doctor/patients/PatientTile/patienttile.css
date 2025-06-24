@@ -1,0 +1,39 @@
+.patient-tile {
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  justify-content: space-between;
+  background-color: var(--color-hover);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.patient-tile:hover {
+  background-color: var(--color-highlight);
+  transform: scale(1.01);
+}
+
+.patient-tile-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+}
+
+.patient-tile-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.patient-tile-image {
+  width: 60px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}

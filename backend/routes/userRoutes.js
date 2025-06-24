@@ -18,6 +18,8 @@ const router = express.Router();
 router.get("/preferences/:id", getUserPreferences);
 router.put("/preferences/:id", updateUserPreferences);
 
+router.get("/notifications", protect, getNotifications);
+
 router.get("/:id", getUserProfile);
 router.put("/:id", updateUserProfile);
 
@@ -26,6 +28,5 @@ router.put("/upload/:id", multer.single("image"), updateUserImage);
 router.get("/doctors/:id", getConsultedDoctors);
 router.get("/hospitals/:id", getVisitedHospitals);
 router.post("/donors", getDonors);
-router.get("/notifications", protect, getNotifications);
 
 export default router;

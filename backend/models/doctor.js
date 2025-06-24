@@ -248,32 +248,40 @@ export const approveAnAppointmentFunction = async (id) => {
 };
 
 export const getAllPatientsFunction = async (id, name, age_start, age_end) => {
+  const baseQuery = `
+    SELECT DISTINCT ON (u.id)
+      u.*,
+      EXTRACT(YEAR FROM age(u.dob)) AS age,
+      ROUND(CASE 
+        WHEN u.height > 0 
+        THEN u.weight / ((u.height / 100.0) * (u.height / 100.0)) 
+        ELSE NULL 
+      END, 2) AS bmi
+    FROM appointments AS a
+    JOIN users AS u ON a.patient_id = u.id
+    WHERE a.doctor_id = $1
+      AND EXTRACT(YEAR FROM age(u.dob)) >= $2
+      AND EXTRACT(YEAR FROM age(u.dob)) <= $3
+  `;
+
+  const nameFilter = `
+    AND (
+      u.firstname ILIKE '%' || $4 || '%' 
+      OR u.lastname ILIKE '%' || $4 || '%'
+      OR u.firstname || ' ' || u.lastname ILIKE '%' || $4 || '%'
+    )
+  `;
+
   if (name) {
-    const { rows } = await pool.query(
-      `SELECT * FROM appointments AS a
-      JOIN users AS u ON a.patient_id = u.id
-      WHERE a.doctor_id = $1
-        AND (
-          u.firstname ILIKE '%' || $2 || '%' 
-          OR u.lastname ILIKE '%' || $2 || '%'
-          OR u.firstname || ' ' || u.lastname ILIKE '%' || $2 || '%'
-        )
-        AND EXTRACT (YEAR FROM age(u.dob)) >= $3
-        AND EXTRACT (YEAR FROM age(u.dob)) <= $4
-      `,
-      [id, name, age_start, age_end]
-    );
+    const { rows } = await pool.query(baseQuery + nameFilter, [
+      id,
+      age_start,
+      age_end,
+      name,
+    ]);
     return rows;
   } else {
-    const { rows } = await pool.query(
-      `SELECT * FROM appointments AS a
-      JOIN users AS u ON a.patient_id = u.id
-      WHERE a.doctor_id = $1
-        AND EXTRACT (YEAR FROM age(u.dob)) >= $2
-        AND EXTRACT (YEAR FROM age(u.dob)) <= $3
-      `,
-      [id, age_start, age_end]
-    );
+    const { rows } = await pool.query(baseQuery, [id, age_start, age_end]);
     return rows;
   }
 };
@@ -380,6 +388,8 @@ export const addSpecializationForDoctorFunction = async (doctor_id, spec) => {
       [doctor_id, newSpecialization[0].id]
     );
 
+    rows[0].name = spec;
+
     return rows[0];
   }
 
@@ -390,6 +400,7 @@ export const addSpecializationForDoctorFunction = async (doctor_id, spec) => {
     RETURNING *`,
     [doctor_id, specialization[0].id]
   );
+  rows[0].name = spec;
   return rows[0];
 };
 
@@ -470,8 +481,6 @@ export const getDoctorFunction = async (
   const values = [];
   let i = 1;
 
-  // --- Search Filter Improvement ---
-  // Allow searching by first name, last name, or specialization name
   if (searchValue) {
     fields.push(
       `(u.firstname ILIKE '%' || $${i} || '%' OR u.lastname ILIKE '%' || $${i} || '%' OR dss.name ILIKE '%' || $${i} || '%')`
@@ -492,9 +501,6 @@ export const getDoctorFunction = async (
     i++;
   }
 
-  // The specialization filter needs to be in a HAVING clause after grouping
-  // We'll handle this separately later.
-
   if (dayFilters && dayFilters.length) {
     const dayConditions = dayFilters.map((day) => {
       if (day === "Today") {
@@ -506,7 +512,6 @@ export const getDoctorFunction = async (
         return `$${i++}::days`;
       }
     });
-    // Use ANY to check if the doctor's schedule day is in the list of provided days
     fields.push(
       `EXISTS (SELECT 1 FROM doctor_schedule ds_check WHERE ds_check.doctor_id = d.id AND ds_check.day = ANY(ARRAY[${dayConditions.join(
         ", "

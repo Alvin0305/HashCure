@@ -33,7 +33,7 @@ export const addUserAllergy = async (req, res) => {
 
 export const removeAllergy = async (req, res) => {
   const user_id = req.params.id;
-  const { name } = req.body;
+  const { name } = req.query;
   try {
     const removedAllergy = await removeAllergyFunction(user_id, name);
     if (!removedAllergy)
