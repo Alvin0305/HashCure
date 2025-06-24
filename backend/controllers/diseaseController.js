@@ -74,7 +74,9 @@ export const deleteDisease = async (req, res) => {
 export const addANewDiseaseValue = async (req, res) => {
   const user_id = req.params.id;
   const { disease_id, record_date, value } = req.body;
+  console.log(record_date);
   const correctedDate = new Date(record_date);
+  console.log(correctedDate);
   try {
     const newDiseaseValue = await addANewDiseaseValueFunction(
       user_id,
@@ -160,10 +162,12 @@ export const addANewDiseaseReport = async (req, res) => {
 
 export const removeADiseaseReport = async (req, res) => {
   const { id } = req.params;
-  const { public_id } = req.body;
+  const { public_id } = req.query;
+  console.log(id, public_id);
   try {
     const result = await deleteFromCloudinary(public_id);
-    if (result.result === "not found")
+    console.log("result: ", result);
+    if (result?.result === "not found")
       return res.status(400).json({ error: "public id is invalid" });
     await removeADiseaseReportFunction(id);
     res.json({ message: "File succesfully deleted" });

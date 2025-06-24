@@ -51,6 +51,8 @@
   padding: 0;
   border-radius: 5px;
   z-index: 9999;
+  transform: translateX(-100%);
+  /* transform: translateY(-100%); */
 }
 
 .pad-50 {
@@ -65,4 +67,33 @@
 
 .context-menu-option:hover {
   background-color: var(--color-highlight);
+}
+
+@media (max-width: 768px) {
+  .profile-page-image {
+    width: 100px;
+    height: 100px;
+  }
+
+  .schedule-day * {
+    font-size: 12px;
+  }
+
+  .schedule-day {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .schedule-slot * {
+    font-size: 11px;
+  }
+
+  .schedule-row {
+    align-items: stretch;
+  }
+
+  .profile-save-button {
+    font-size: 12px;
+  }
 }

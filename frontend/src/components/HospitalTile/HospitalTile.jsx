@@ -23,9 +23,6 @@ const HospitalTile = ({ hospital }) => {
                 <SmallBubble name={spec.name} onClick={() => {}} key={index} />
               )
           )}
-          {hospital.specialities.length > 2 && (
-            <Icon icon="lucide:more-horizontal" />
-          )}
         </div>
         <h4 className="hospital-address">{hospital.address}</h4>
         <Rating rating={hospital.rating} />

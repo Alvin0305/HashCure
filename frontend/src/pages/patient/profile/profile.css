@@ -16,7 +16,7 @@
 
 .profile-page-image {
   width: 200px;
-  height: 200px;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
   border-radius: 50%;
 }
@@ -123,4 +123,15 @@
 
 .profile-delete-icon * {
   color: var(--color-red);
+}
+
+@media (max-width: 768px) {
+  .profile-page-input {
+    font-size: 12px;
+    padding: 10px;
+  }
+
+  .profile-page-button {
+    font-size: 13px;
+  }
 }

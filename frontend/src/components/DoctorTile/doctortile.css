@@ -42,3 +42,30 @@
   aspect-ratio: 1 / 1;
   object-fit: cover;
 }
+
+@media (max-width: 768px) {
+  .doctor-tile {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .doctor-tile-image {
+    height: 75px;
+  }
+
+  .doctor-tile-name {
+    font-size: 14px;
+  }
+
+  .doctor-tile-hospital-name {
+    font-size: 12px;
+  }
+
+  .doctor-tile-fees {
+    font-size: 13px;
+  }
+
+  .doctor-tile-details {
+    gap: 5px;
+  }
+}

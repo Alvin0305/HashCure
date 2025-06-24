@@ -51,6 +51,7 @@ export const registerUser = async (req, res) => {
 
     log(user.id, "Success");
     return res.json({
+      id: user.id,
       firstname: user.firstname,
       lastname: user.lastname,
       email: user.email,

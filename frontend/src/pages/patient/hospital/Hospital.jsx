@@ -174,7 +174,7 @@ const Hospital = () => {
           className="hospital-page-image"
         />
         <div className="hospital-page-details">
-          <div className="flex width-100 align-center space-between">
+          <div className="hospital-top-right">
             <div className="flex col gap-10">
               <h1 className="hospital-page-name">{hospital?.name}</h1>
               <h5 className="hospital-started-at">

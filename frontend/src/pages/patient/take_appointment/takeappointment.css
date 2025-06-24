@@ -112,6 +112,8 @@
   background-color: var(--color-blue);
   padding: 20px 30px;
   font-size: medium;
+  border-radius: 5px;
+  border: none;
 }
 
 .appointment-grid {
@@ -184,4 +186,34 @@
 
 .slot-cell.selected {
   background-color: var(--color-green);
+}
+
+@media (max-width: 768px) {
+  .take-appointment-doctor-image {
+    width: 75px;
+  }
+
+  .take-appointment-top-subdiv {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .take-appointment-legend-value {
+    margin: 0;
+  }
+
+  .take-appointment-calendar-button-div {
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .appointment-grid {
+    width: 100%;
+  }
+
+  .slot-cell {
+    aspect-ratio: 1 / 1;
+    min-height: 20px;
+  }
 }

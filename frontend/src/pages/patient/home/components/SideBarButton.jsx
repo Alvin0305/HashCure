@@ -14,7 +14,7 @@ const SideBarButton = ({ name, iconName }) => {
     Home: "home",
     "Quick Access": "quick-access",
     Appointments: "appointments",
-    Reports: "reports",
+    Reports: `reports/${user.id}`,
     Doctors: "doctors",
     Hospitals: "hospitals",
     Notifications: "notifications",

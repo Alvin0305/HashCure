@@ -288,6 +288,8 @@ const DoctorProfile = () => {
     }
   };
 
+  const isPhone = window.innerWidth;
+
   if (!user) return <div>Loading...</div>;
 
   return (
@@ -472,7 +474,7 @@ const DoctorProfile = () => {
           return (
             <div className="schedule-row" key={index}>
               <div className="schedule-day">
-                <h3 className="m0">{day}</h3>
+                <h3 className="m0">{isPhone ? day.substring(0, 3) : day}</h3>
               </div>
               {daySlot[0] ? (
                 <div
@@ -491,7 +493,10 @@ const DoctorProfile = () => {
                     });
                   }}
                 >
-                  {daySlot[0].start_time} - {daySlot[0].end_time}
+                  <h4 className="m0">
+                    {daySlot[0].start_time.substring(0, 5)} -{" "}
+                    {daySlot[0].end_time.substring(0, 5)}
+                  </h4>
                 </div>
               ) : (
                 <div
@@ -522,7 +527,10 @@ const DoctorProfile = () => {
                     });
                   }}
                 >
-                  {daySlot[1].start_time} - {daySlot[1].end_time}
+                  <h4 className="m0">
+                    {daySlot[1].start_time.substring(0, 5)} -{" "}
+                    {daySlot[1].end_time.substring(0, 5)}
+                  </h4>
                 </div>
               ) : (
                 <div

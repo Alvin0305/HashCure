@@ -44,6 +44,7 @@ const ConductAppointment = () => {
         data
       );
       console.log(response.data);
+      navigate("/doctor/home/appointments");
     } catch (err) {
       console.error(err);
     }
@@ -66,7 +67,12 @@ const ConductAppointment = () => {
         >
           View Patient Profile
         </button>
-        <button className="conduct-appointment-button">
+        <button
+          className="conduct-appointment-button"
+          onClick={() =>
+            navigate(`/doctor/home/reports/${appointment.patient_id}`)
+          }
+        >
           View Patient Reports
         </button>
       </div>
@@ -105,60 +111,65 @@ const ConductAppointment = () => {
       <button className="conduct-appointment-button" onClick={handleMarkAsDone}>
         Mark As Done
       </button>
-      {appointments.map((appointment, index) => (
-        <div className="view-appointments-page" key={index}>
-          <Heading
-            name={new Date(appointment?.time).toLocaleDateString("default", {
-              day: "2-digit",
-              month: "short",
-              year: "numeric",
-            })}
-            enable
-            onClick={() =>
-              selectedAppointment?.id === appointment?.id
-                ? setSelectedAppointment(null)
-                : setSelectedAppointment(appointment)
-            }
-          />
-          {selectedAppointment?.id === appointment?.id && (
-            <div className="view-appointment-page">
-              <div className="view-appointment-page-top">
-                <div className="view-appointment-page-top-left">
-                  <h2 className="m0">{appointment?.doctor_name}</h2>
-                  <h4 className="m0">
-                    {new Date(appointment?.time).toDateString()}
-                  </h4>
-                  <h3 className="m0">{appointment?.hospital_name}</h3>
+      <div className="width-100">
+        {appointments.map((appointment, index) => (
+          <div className="view-appointments-page" key={index}>
+            <Heading
+              name={new Date(appointment?.time).toLocaleDateString("default", {
+                day: "2-digit",
+                month: "short",
+                year: "numeric",
+              })}
+              enable
+              onClick={() =>
+                selectedAppointment?.id === appointment?.id
+                  ? setSelectedAppointment(null)
+                  : setSelectedAppointment(appointment)
+              }
+            />
+            {selectedAppointment?.id === appointment?.id && (
+              <div className="view-appointment-page">
+                <div className="view-appointment-page-top">
+                  <div className="view-appointment-page-top-left">
+                    <h2 className="m0">{appointment?.doctor_name}</h2>
+                    <h4 className="m0">
+                      {new Date(appointment?.time).toDateString()}
+                    </h4>
+                    <h3 className="m0">{appointment?.hospital_name}</h3>
+                  </div>
+                  <div className="view-appointment-page-top-right">
+                    <h3 className="m0">{appointment?.fees}</h3>
+                    <h4 className="m0">
+                      {new Date(appointment?.time).toLocaleTimeString(
+                        "default",
+                        {
+                          hour: "2-digit",
+                          minute: "2-digit",
+                          hour12: true,
+                        }
+                      ) || ""}
+                    </h4>
+                  </div>
                 </div>
-                <div className="view-appointment-page-top-right">
-                  <h3 className="m0">{appointment?.fees}</h3>
-                  <h4 className="m0">
-                    {new Date(appointment?.time).toLocaleTimeString("default", {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                      hour12: true,
-                    }) || ""}
-                  </h4>
+                <div className="view-appointment-content">
+                  <h2>Chief Complaint</h2>
+                  <h4 className="m0">{appointment?.chief_complaint}</h4>
+                  <h2>Diagnosis</h2>
+                  <h4 className="m0">{appointment?.diagnosis}</h4>
+                  <h2>Treatment Plan</h2>
+                  <h4 className="m0">{appointment?.treatment_plan}</h4>
                 </div>
+                <button
+                  className="view-appointment-print-button"
+                  onClick={handlePrint}
+                >
+                  Print
+                </button>
               </div>
-              <div className="view-appointment-content">
-                <h2>Chief Complaint</h2>
-                <h4 className="m0">{appointment?.chief_complaint}</h4>
-                <h2>Diagnosis</h2>
-                <h4 className="m0">{appointment?.diagnosis}</h4>
-                <h2>Treatment Plan</h2>
-                <h4 className="m0">{appointment?.treatment_plan}</h4>
-              </div>
-              <button
-                className="view-appointment-print-button"
-                onClick={handlePrint}
-              >
-                Print
-              </button>
-            </div>
-          )}
-        </div>
-      ))}
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

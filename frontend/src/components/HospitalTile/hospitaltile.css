@@ -28,7 +28,7 @@
 
 .hospital-tile-image {
   height: 240px;
-  width: 240px;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
 }
 
@@ -41,4 +41,30 @@
 .hospital-address {
   margin: 0;
   font-weight: lighter;
+}
+
+@media (max-width: 768px) {
+  .hospital-tile {
+    max-width: 100%;
+  }
+
+  .hospital-tile-image {
+    height: 75px;
+  }
+
+  .hospital-tile-name {
+    font-size: 14px;
+  }
+
+  .hospital-address {
+    font-size: 12px;
+  }
+
+  .hospital-tile-left-div {
+    height: fit-content;
+    gap: 5px;
+    display: flex;
+    flex-direction: column;
+    min-height: auto;
+  }
 }

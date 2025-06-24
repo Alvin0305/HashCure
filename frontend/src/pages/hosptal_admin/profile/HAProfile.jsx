@@ -205,7 +205,7 @@ const HAProfile = () => {
           />
         </div>
       </div>
-      <div className="flex gap-10 align-center">
+      <div className="flex gap-10 align-center wrap">
         <select
           name="district"
           id=""

@@ -5,3 +5,10 @@
 .star path {
   color: gold;
 }
+
+@media (max-width: 768px) {
+  .star {
+    width: 24px;
+    height: 24px;
+  }
+}

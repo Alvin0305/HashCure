@@ -63,3 +63,13 @@
   gap: 10px;
   width: 100%;
 }
+
+@media (max-width: 768px) {
+  .doctor-tiles {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .doctor-first-filter {
+    flex-wrap: wrap;
+  }
+}

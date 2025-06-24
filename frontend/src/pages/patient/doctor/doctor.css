@@ -15,7 +15,9 @@
 
 .doctor-page-image {
   border-radius: 50%;
-  height: 200px;
+  width: 200px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
 }
 
 .doctor-page-details {
@@ -44,7 +46,7 @@
   font-weight: bold;
 }
 
-.take-appointment-button {
+.doctor-take-appointment-button {
   background-color: var(--color-blue);
   border: none;
   padding: 14px 10px;
@@ -92,4 +94,42 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+}
+
+@media (max-width: 768px) {
+  .doctor-page-image {
+    width: 75px;
+  }
+
+  .doctor-take-appointment-button {
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .schedule-current-hospital-div {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .doctor-schedule {
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .doctor-schedule * {
+    font-size: 12px;
+  }
+
+  .doctor-schedule-data {
+    min-width: 80px;
+  }
+
+  .hospital-user-response-div {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .search-field * {
+    font-size: 14px;
+  }
 }

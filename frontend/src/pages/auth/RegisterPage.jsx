@@ -74,7 +74,7 @@ const RegisterPage = () => {
           }
           className="field"
         />
-        <p className="m0 auth-link">Forget Password?</p>
+        {/* <p className="m0 auth-link">Forget Password?</p> */}
         <button type="submit" className="button blue-button">
           Sign Up
         </button>

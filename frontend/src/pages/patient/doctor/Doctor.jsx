@@ -137,7 +137,7 @@ const Doctor = () => {
           </h3>
         </div>
         <button
-          className="take-appointment-button"
+          className="doctor-take-appointment-button"
           onClick={handleTakeAppointmentButton}
         >
           Take Appointment

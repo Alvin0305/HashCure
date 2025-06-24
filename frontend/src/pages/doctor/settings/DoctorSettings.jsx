@@ -96,11 +96,6 @@ const DoctorSettings = () => {
             }}
             className="settings-input"
           />
-          <Icon icon="lucide:info" width={20} height={20} />
-          <h5 className="settings-sub-label">
-            this will ensure you will not be contacted for a period of{" "}
-            {preferences.frequency_of_blood_donation} months
-          </h5>
         </div>
       </div>
       <Heading name="General" />

@@ -7,28 +7,41 @@ import HADoctors from "../doctors/HADoctors";
 import HAPatients from "../patients/HAPatients";
 import BloodDonation from "../../patient/blood_donation/BloodDonation";
 import HAProfile from "../profile/HAProfile";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useHospital } from "../../../contexts/hospitalContext";
 import Profile from "../../patient/profile/Profile";
 import Settings from "../../patient/settings/Settings";
 import Doctor from "../../patient/doctor/Doctor";
 import DoctorPage from "../doctors/DoctorPage";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 const HAHomePage = () => {
+  const [showSidebar, setShowSidebar] = useState(false);
   const { hospital } = useHospital();
   useEffect(() => {
     console.log(hospital);
   }, []);
+  const isPhone = window.innerWidth < 728;
+  let style = { zIndex: 9999 };
+  if (!isPhone) {
+    style["display"] = "none";
+  }
 
   return (
     <div className="homepage">
-      <SideBar />
+      <Icon
+        icon="lucide:menu"
+        width={40}
+        height={40}
+        style={style}
+        onClick={() => setShowSidebar(true)}
+      />
+      <SideBar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
       <div className="homepage-content">
         <Routes>
           <Route index element={<Navigate to="home" />} />
           <Route path="home" element={<Home />} />
           <Route path="appointments" element={<HAAppointments />} />
-          <Route path="reports" element={<HAReports />} />
           <Route path="doctors" element={<HADoctors />} />
           <Route path="patients" element={<HAPatients />} />
           <Route path="blood-donation" element={<BloodDonation />} />

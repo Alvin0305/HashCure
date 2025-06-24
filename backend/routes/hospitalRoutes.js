@@ -5,6 +5,7 @@ import {
   addHospitalComment,
   addHospitalSpeciality,
   addHospitalTiming,
+  createHospital,
   deleteHospitalComment,
   deleteHospitalTiming,
   editHospitalComment,
@@ -47,6 +48,8 @@ router.get("/specialities", getAllSpecialities);
 router.get("/specialities/:id", getHospitalSpecialities);
 router.post("/specialities/:id", addHospitalSpeciality);
 router.delete("/specialities/:id", removeHospitalSpeciality);
+
+router.post(`/create`, createHospital);
 
 router.get("/:id", getHospitalById);
 router.put("/:id", updateHospital);

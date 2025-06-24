@@ -57,3 +57,7 @@
 .end {
   align-self: flex-end;
 }
+
+.flex-1 {
+  flex: 1;
+}

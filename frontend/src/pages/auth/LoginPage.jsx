@@ -21,6 +21,8 @@ const LoginPage = () => {
         navigate("doctor/home");
       } else if (response.data.role === "hospital-admin") {
         navigate("/hospital-admin/home");
+      } else if (response.data.role === "admin") {
+        navigate("admin/home");
       } else {
         navigate("/patient/home");
       }
@@ -58,7 +60,7 @@ const LoginPage = () => {
           }
           className="field"
         />
-        <p className="m0 auth-link">Forget Password?</p>
+        {/* <p className="m0 auth-link">Forget Password?</p> */}
         <button type="submit" className="button blue-button">
           Sign In
         </button>

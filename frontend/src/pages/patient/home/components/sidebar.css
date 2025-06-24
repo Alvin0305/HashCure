@@ -12,6 +12,10 @@
   position: fixed;
 }
 
+.sidebar-close-icon {
+  display: none;
+}
+
 .sidebar-button {
   display: flex;
   align-items: center;
@@ -36,4 +40,30 @@
   font-weight: normal;
   font-size: 20px;
   text-wrap: nowrap;
+}
+
+@media screen and (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    z-index: 9999;
+    justify-content: space-between;
+    padding-bottom: 10px;
+  }
+
+  .sidebar.show {
+    transform: translateX(0);
+  }
+
+  .sidebar-close-icon {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .sidebar h2 {
+    font-size: 14px;
+  }
+
+  .sidebar-button {
+    padding: 10px;
+  }
 }

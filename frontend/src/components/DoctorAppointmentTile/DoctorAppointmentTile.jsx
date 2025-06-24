@@ -3,9 +3,24 @@ import { deleteAppointmentsByUser } from "../../services/appointmentService";
 import { useUser } from "../../contexts/userContext";
 import { useNavigate } from "react-router-dom";
 import socket from "../../sockets/socket";
+import { useEffect, useState } from "react";
+import { getUserById } from "../../services/userService";
 
 const DoctorAppointmentTile = ({ appointment, setAppointments }) => {
   const { user } = useUser();
+  const [patient, setPatient] = useState(null);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await getUserById(appointment.patient_id);
+        setPatient(response.data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    fetchUser();
+  }, []);
 
   const handleDeleteAppointment = async (e) => {
     e.stopPropagation();
@@ -44,9 +59,7 @@ const DoctorAppointmentTile = ({ appointment, setAppointments }) => {
       }
     >
       <div className="appointent-tile-doctor-div">
-        <h3 className="m0 appointment-tile-doctor">
-          {appointment.doctor_name}
-        </h3>
+        <h3 className="m0 appointment-tile-doctor">{patient?.firstname}</h3>
         <h3 className="m0 appointment-tile-fees">{"₹ " + appointment.fees}</h3>
       </div>
       <div className="appointment-tile-time-div">

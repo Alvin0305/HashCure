@@ -32,3 +32,9 @@
   gap: 16px;
   box-sizing: border-box;
 }
+
+@media (max-width: 768px) {
+  .hospital-tiles {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

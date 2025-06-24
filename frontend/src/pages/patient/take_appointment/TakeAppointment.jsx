@@ -148,6 +148,8 @@ const TakeAppointment = () => {
     );
   };
 
+  const isPhone = window.innerWidth < 768;
+
   if (!doctor) return <div>Loading...</div>;
 
   return (
@@ -217,7 +219,7 @@ const TakeAppointment = () => {
         <div className="header-cell" />
         {dayHeadings.slice(1).map((day) => (
           <div className="header-cell" key={day}>
-            {day}
+            {isPhone ? day.slice(0, 3) : day}
           </div>
         ))}
         {timeSlots.map((slotTime, rowIdx) => {

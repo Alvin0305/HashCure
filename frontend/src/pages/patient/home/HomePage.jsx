@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import SideBar from "./components/SideBar";
 import "./homepage.css";
 import HomeContent from "./components/HomeContent/HomeContent";
@@ -17,18 +17,32 @@ import TakeAppointment from "../take_appointment/TakeAppointment";
 import { Routes, Route, Navigate } from "react-router-dom";
 import ViewAppointment from "../view_appointment/ViewAppointment";
 import ViewAppointments from "../view_appointments/ViewAppointments";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 const HomePage = () => {
+  const [showSidebar, setShowSidebar] = useState(false);
+  const isPhone = window.innerWidth < 728;
+  let style = { zIndex: 9999 };
+  if (!isPhone) {
+    style["display"] = "none";
+  }
   return (
     <div className="homepage">
-      <SideBar />
+      <Icon
+        icon="lucide:menu"
+        width={40}
+        height={40}
+        style={style}
+        onClick={() => setShowSidebar(true)}
+      />
+      <SideBar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
       <div className="homepage-content">
         <Routes>
           <Route index element={<Navigate to="home" />} />
           <Route path="home" element={<HomeContent />} />
           <Route path="quick-access" element={<QuickAccess />} />
           <Route path="appointments" element={<Appointments />} />
-          <Route path="reports" element={<Reports />} />
+          <Route path="reports/:id" element={<Reports />} />
           <Route path="doctors" element={<Doctors />} />
           <Route path="hospitals" element={<Hospitals />} />
           <Route path="notifications" element={<Notifications />} />

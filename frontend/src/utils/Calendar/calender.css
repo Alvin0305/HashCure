@@ -1,5 +1,7 @@
 .calendar {
   width: 400px;
+  box-sizing: border-box;
+  max-width: 100%;
 }
 
 .calendar-month-div {

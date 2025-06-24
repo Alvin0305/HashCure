@@ -18,3 +18,19 @@
   width: 100%;
   gap: 10px;
 }
+
+@media (max-width: 768px) {
+  .patient-appointments-content {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .drop-down {
+    padding: 5px;
+    font-size: 14px;
+  }
+
+  option {
+    padding: 5px;
+    font-size: 14px;
+  }
+}

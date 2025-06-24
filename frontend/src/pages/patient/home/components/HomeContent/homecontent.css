@@ -29,3 +29,19 @@
   overflow-x: auto;
   min-width: 100%;
 }
+
+@media (max-width: 768px) {
+  .patient-home-top {
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 0;
+  }
+
+  .patient-home-label {
+    margin: 0;
+  }
+
+  .patient-home-page-flow {
+    flex-direction: column;
+  }
+}

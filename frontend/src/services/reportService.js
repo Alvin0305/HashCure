@@ -22,6 +22,12 @@ export const addANewDiseaseReport = (user_id, formData) =>
     headers: { "Content-Type": "multipart/form-data" },
   });
 
+export const removeADiseaseReport = (id, public_id) =>
+  axios.delete(`/api/diseases/report/${id}`, { params: { public_id } });
+
+export const editADiseaseReport = (id, name) =>
+  axios.put(`/api/diseases/report/${id}`, { name });
+
 export const addANewMedicine = (user_id, data) =>
   axios.post(`/api/diseases/medicine/${user_id}`, data);
 

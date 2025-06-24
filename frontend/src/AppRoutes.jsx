@@ -11,6 +11,7 @@ import DoctorHome from "./pages/doctor/home/DoctorHome";
 import HAHomePage from "./pages/hosptal_admin/home/HAHomePage";
 import { getHospitalByAdminId } from "./services/hospitalService";
 import { HospitalProvider, useHospital } from "./contexts/hospitalContext";
+import AdminHomePage from "./pages/admin/AdminHomePage";
 
 const AppRoutes = () => {
   const { user } = useUser();
@@ -84,6 +85,7 @@ const AppRoutes = () => {
         <Route path="/patient/home/*" element={<HomePage />} />
         <Route path="/doctor/home/*" element={<DoctorHome />} />
         <Route path="/hospital-admin/home/*" element={<HAHomePage />} />
+        <Route path="/admin/home" element={<AdminHomePage />} />
       </Routes>
     </Router>
     // </HospitalProvider>

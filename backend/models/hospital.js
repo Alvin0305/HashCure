@@ -1,6 +1,7 @@
 import pool from "../db.js";
 import { getDoctorDetails } from "./doctor.js";
 import { createUser } from "./user.js";
+import bcrypt from "bcryptjs";
 
 export const createDoctorFunction = async (
   firstname,
@@ -528,4 +529,33 @@ export const getUserRatingToHospitalFunction = async (hospital_id, user_id) => {
   if (!rows.length) return { rating: 0 };
 
   return rows[0];
+};
+
+export const createHospitalFunction = async (
+  name,
+  admin_firstname,
+  admin_email,
+  admin_password,
+  ownership
+) => {
+  const password = await bcrypt.hash(admin_password, 10);
+  const admin = await createUser(
+    admin_firstname,
+    "",
+    admin_email,
+    password,
+    "hospital-admin"
+  );
+  console.log(admin);
+
+  const { rows: hospital } = await pool.query(
+    `INSERT INTO hospitals (name, admin_id, ownership) 
+    VALUES ($1, $2, $3) 
+    RETURNING *`,
+    [name, admin.id, ownership]
+  );
+
+  console.log(hospital);
+
+  return hospital[0];
 };

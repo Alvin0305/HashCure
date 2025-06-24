@@ -7,7 +7,7 @@ const Bubble = ({ name, onClick, selected }) => {
       className={`bubble ${selected && "selected-bubble"}`}
       onClick={onClick}
     >
-      <h4 className="m0">{name}</h4>
+      <h4 className="m0 bubble-text">{name}</h4>
     </div>
   );
 };

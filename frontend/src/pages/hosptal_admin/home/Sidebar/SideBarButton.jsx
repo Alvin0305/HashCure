@@ -13,7 +13,6 @@ const SideBarButton = ({ name, iconName }) => {
   const routeMap = {
     Home: "home",
     Appointments: "appointments",
-    Reports: "reports",
     Doctors: "doctors",
     Patients: "patients",
     Settings: "settings",

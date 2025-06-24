@@ -4,6 +4,7 @@ import {
   addHospitalSpecialityFunction,
   addHospitalTimingsFunction,
   createDoctorFunction,
+  createHospitalFunction,
   deleteHospitalCommentsFunction,
   deleteHospitalTimingFunction,
   editHospitalCommentsFunction,
@@ -431,6 +432,26 @@ export const getUserRatingToHospital = async (req, res) => {
   try {
     const rating = await getUserRatingToHospitalFunction(id, user_id);
     return res.json(rating);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: err.message });
+  }
+};
+
+export const createHospital = async (req, res) => {
+  const { name, admin_firstname, admin_email, admin_password, ownership } =
+    req.body;
+
+  try {
+    const hospital = await createHospitalFunction(
+      name,
+      admin_firstname,
+      admin_email,
+      admin_password,
+      ownership
+    );
+    console.log(hospital);
+    res.json(hospital);
   } catch (err) {
     console.log(err);
     res.status(500).json({ error: err.message });

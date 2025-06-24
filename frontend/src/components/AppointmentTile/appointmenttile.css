@@ -54,3 +54,26 @@
   border-radius: 5px;
   cursor: pointer;
 }
+
+@media (max-width: 768px) {
+  .appointment-tile-doctor,
+  .appointment-tile-fees,
+  .appointment-tile-date,
+  .appointment-tile-time {
+    font-size: 14px;
+  }
+
+  .appointment-tile-hospital,
+  .appointment-tile-purpose-div {
+    font-size: 12px;
+  }
+
+  .appointment-tile-status {
+    font-size: 15px;
+  }
+
+  .appointment-tile-button {
+    font-size: 13px;
+    font-weight: bold;
+  }
+}

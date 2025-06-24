@@ -1,8 +1,7 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import "./sidebar.css";
-import SideBarButton from "./SideBarButton";
+import SideBarButton from "./SidebarButton";
 
-const SideBar = ({ showSidebar, setShowSidebar }) => {
+const SideBar = ({ hospitalRef, doctorRef, showSidebar, setShowSidebar }) => {
   const isMobile = window.innerWidth < 768;
 
   const handleClick = () => {
@@ -10,6 +9,7 @@ const SideBar = ({ showSidebar, setShowSidebar }) => {
       setShowSidebar(false);
     }
   };
+
   return (
     <div className={`sidebar ${showSidebar ? "show" : ""}`}>
       <div onClick={handleClick}>
@@ -23,17 +23,19 @@ const SideBar = ({ showSidebar, setShowSidebar }) => {
             />
           </div>
         )}
-        <SideBarButton name="Home" iconName="tabler:home" />
-        <SideBarButton name="Appointments" iconName="tabler:calendar-event" />
-        <SideBarButton name="Patients" iconName="mdi:bed-outline" />
+
         <SideBarButton
-          name="Notifications"
-          iconName="mdi:message-badge-outline"
+          name="Hospitals"
+          iconName="mdi:hospital-building"
+          ref={hospitalRef}
+        />
+        <SideBarButton
+          name="Doctors"
+          iconName="material-symbols:medical-services-outline"
+          ref={doctorRef}
         />
       </div>
       <div onClick={handleClick}>
-        <SideBarButton name="Settings" iconName="tabler:settings" />
-        <SideBarButton name="Profile" iconName="tabler:user" />
         <SideBarButton name="Logout" iconName="tabler:logout" />
       </div>
     </div>

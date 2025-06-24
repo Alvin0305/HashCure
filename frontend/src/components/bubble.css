@@ -1,10 +1,20 @@
 .bubble {
-    border: 2px solid var(--color-border);
-    border-radius: 10px;
-    padding: 10px 20px;
-    cursor: pointer;
+  border: 2px solid var(--color-border);
+  border-radius: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
 }
 
 .selected-bubble {
-    background-color: var(--color-border);
+  background-color: var(--color-border);
+}
+
+@media (max-width: 768px) {
+  .bubble {
+    padding: 6px 10px;
+  }
+
+  .bubble-text {
+    font-size: 12px;
+  }
 }

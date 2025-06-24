@@ -65,3 +65,5 @@ export const removeHospitalSpeciality = (id, name) =>
   axios.delete(`/api/hospitals/specialities/${id}`, {
     params: { speciality: name },
   });
+
+export const addHospital = (body) => axios.post(`/api/hospitals/create`, body);
